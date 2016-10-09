@@ -1,0 +1,30 @@
+Match_Token (NUMBER_TOKEN_IF);
+           Match_Token (NUMBER_TOKEN_PARENS_L);
+           EXP();
+           Match_Token (NUMBER_TOKEN_PARENS_R);   
+		if  (lexReg.token_number == NUMBER_TOKEN_BEGIN) {
+           
+                  Match_Token (NUMBER_TOKEN_BEGIN);
+                  while ( lexReg.token_number != NUMBER_TOKEN_ENDIF ) {
+                  CMD ();
+                  }   
+                  Match_Token (NUMBER_TOKEN_ENDIF);
+                
+           }  else {
+                CMD();                              
+           }  
+
+	if (lexReg.token_number == NUMBER_TOKEN_ELSE) {                   
+                Match_Token (NUMBER_TOKEN_ELSE);
+                if (lexReg.token_number == NUMBER_TOKEN_BEGIN) {
+                  Match_Token (NUMBER_TOKEN_BEGIN);
+                  while ( lexReg.token_number != NUMBER_TOKEN_ENDELSE ) {
+                     CMD ();
+                  } 
+                  Match_Token (NUMBER_TOKEN_ENDELSE);  
+                } else {
+                  CMD();
+                }
+                
+                
+        }
